@@ -8,7 +8,9 @@ function App() {
     return (
       <div className='App'>
         <h1>Hello world</h1>
-        <Person />
+        <Person name='Mohammad' age='29'/>
+        <Person name='Manu' age='27'>Hobbies: Racing</Person>
+        <Person name='Joe' age='30'/>
       </div>
     );
 
