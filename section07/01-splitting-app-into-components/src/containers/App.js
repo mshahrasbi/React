@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
 import './App.css';
-import Person from './Person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/cockpit/cockpit';
 
 class App extends Component {
   state = {
@@ -44,56 +46,24 @@ class App extends Component {
   }
 
   render () {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
-
     let myPersons = null;
 
     if ( this.state.showPersons ) {
-      myPersons = (
-        <div>
-          { this.state.Persons.map( (person, index) => {
-            return <Person
-              click={() => this.deletePersonHandler(index)}
-              name={person.name}
-              age={person.age} 
-              key={person.id}
-              changed={( event ) => this.nameChangedHandler(event, person.id)}/>
-          }) }
-        </div>
-      );
-
-      style.backgroundColor = "red";
-    }
-
-    const classes = [];
-
-    if (this.state.Persons.length <= 2) {
-      classes.push('red');
-    } 
-
-    if (this.state.Persons.length <= 1) {
-      classes.push('bold');
+      myPersons =  <Persons 
+                      persons={this.state.Persons}
+                      clicked={this.deletePersonHandler}
+                      changed={this.nameChangedHandler}/>;
     }
 
     return (
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        <button
-          style={style}
-          onClick={this.togglePersonsHandler}>Toggle Persons</button>
-
+      <div className={'App'}>
+        <Cockpit
+          showPersons={this.state.showPersons}
+          persons={this.state.Persons}
+          clicked={this.togglePersonsHandler}/>
         {myPersons}
       </div>
     );
-    // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 
