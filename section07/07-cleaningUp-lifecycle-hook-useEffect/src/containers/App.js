@@ -45,6 +45,15 @@ class App extends Component {
     console.log('[App.js] componentDidMount Called');
   }
 
+  shouldComponentUpdate(nextProps, nextState){
+    console.log('[App.js] shouldComponentUpdate Called');
+    return true; // allow the update
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate Called');
+  }
+
   deletePersonHandler = (personIndex) => {
     // const persons  = this.state.Persons.splice(); // copy the whole array
     // or use the new feature spread operator
